@@ -103,11 +103,11 @@ router.delete("/:post_id", auth, async (req, res) => {
   }
 });
 
-// @route PUT api/posts/like/:post_id
+// @route PUT api/posts/:post_id/like
 // @desc Like a post
 // @access Private
 
-router.put("/like/:post_id", auth, async (req, res) => {
+router.put("/:post_id/like", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.post_id);
 
@@ -130,11 +130,11 @@ router.put("/like/:post_id", auth, async (req, res) => {
   }
 });
 
-// @route PUT api/posts/unlike/:post_id
+// @route PUT api/posts/:post_id/unlike
 // @desc Unlike a post
 // @access Private
 
-router.put("/unlike/:post_id", auth, async (req, res) => {
+router.put("/:post_id/unlike", auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.post_id);
 
@@ -162,12 +162,12 @@ router.put("/unlike/:post_id", auth, async (req, res) => {
   }
 });
 
-// @route POST api/posts/comment/:post_id
+// @route POST api/posts/:post_id/comment/
 // @desc Comment on a post
 // @access Private
 
 router.post(
-  "/comment/:post_id",
+  "/:post_id/comment/",
   [auth, [check("text", "Text is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
@@ -201,5 +201,9 @@ router.post(
     }
   }
 );
+
+// @route DELETE api/posts/:post_id/comment/:comment_id
+// @desc Comment on a post
+// @access Private
 
 module.exports = router;
