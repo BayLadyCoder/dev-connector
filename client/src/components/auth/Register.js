@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,12 +15,30 @@ const Register = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
       console.log("Password do not matched");
     } else {
-      console.log(formData);
+      console.log("Success!!");
+
+      //   const newUser = {
+      //     name,
+      //     email,
+      //     password,
+      //   };
+      //   try {
+      // const config = {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // };
+      // const body = JSON.stringify(newUser);
+      // const res = await axios.post("/api/users", body, config);
+      // console.log(res.data);
+      //   } catch (error) {
+      //     console.log(error.message);
+      //   }
     }
   };
   return (
@@ -75,7 +94,7 @@ const Register = () => {
         <input type="submit" class="btn btn-primary" value="Register" />
       </form>
       <p class="my-1">
-        Already have an account? <a href="login.html">Sign In</a>
+        Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </section>
   );
