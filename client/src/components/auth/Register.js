@@ -42,13 +42,13 @@ const Register = () => {
     }
   };
   return (
-    <section class="container">
-      <h1 class="large text-primary">Sign Up</h1>
-      <p class="lead">
-        <i class="fas fa-user"></i> Create Your Account
+    <section className="container">
+      <h1 className="large text-primary">Sign Up</h1>
+      <p className="lead">
+        <i className="fas fa-user"></i> Create Your Account
       </p>
-      <form class="form" onSubmit={(e) => handleSubmit(e)}>
-        <div class="form-group">
+      <form className="form" onSubmit={(e) => handleSubmit(e)}>
+        <div className="form-group">
           <input
             type="text"
             placeholder="Name"
@@ -58,7 +58,7 @@ const Register = () => {
             required
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="email"
             placeholder="Email Address"
@@ -66,12 +66,12 @@ const Register = () => {
             value={email}
             onChange={(e) => handleChange(e)}
           />
-          <small class="form-text">
+          <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a
             Gravatar email
           </small>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="password"
             placeholder="Password"
@@ -81,7 +81,7 @@ const Register = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="password"
             placeholder="Confirm Password"
@@ -91,9 +91,9 @@ const Register = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <input type="submit" class="btn btn-primary" value="Register" />
+        <input type="submit" className="btn btn-primary" value="Register" />
       </form>
-      <p class="my-1">
+      <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
     </section>

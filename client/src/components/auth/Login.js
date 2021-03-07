@@ -18,14 +18,14 @@ const Login = () => {
     console.log("Success!!");
   };
   return (
-    <section class="container">
-      <div class="alert alert-danger">Invalid credentials</div>
-      <h1 class="large text-primary">Sign In</h1>
-      <p class="lead">
-        <i class="fas fa-user"></i> Sign into Your Account
+    <section className="container">
+      <div className="alert alert-danger">Invalid credentials</div>
+      <h1 className="large text-primary">Sign In</h1>
+      <p className="lead">
+        <i className="fas fa-user"></i> Sign into Your Account
       </p>
-      <form class="form" onSubmit={(e) => handleSubmit(e)}>
-        <div class="form-group">
+      <form className="form" onSubmit={(e) => handleSubmit(e)}>
+        <div className="form-group">
           <input
             type="email"
             placeholder="Email Address"
@@ -35,7 +35,7 @@ const Login = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <input
             type="password"
             placeholder="Password"
@@ -44,9 +44,9 @@ const Login = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <input type="submit" class="btn btn-primary" value="Login" />
+        <input type="submit" className="btn btn-primary" value="Login" />
       </form>
-      <p class="my-1">
+      <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
     </section>
