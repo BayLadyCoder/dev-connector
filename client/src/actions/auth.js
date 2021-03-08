@@ -8,6 +8,24 @@ import {
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
+// Load user
+export const loadUser = () => async (dispatch) => {
+  // check the local storage first
+  // if there is a token in local storage, set it as a global header for axios
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  // get user data from the backend
+  try {
+    const res = await axios.get("/api/auth");
+    dispatch({ type: USER_LOADED, payload: res.data });
+  } catch (error) {
+    console.log(error.message);
+    dispatch({ type: AUTH_ERROR });
+  }
+};
+
 // Register user
 export const registerNewUser = (newUserData) => async (dispatch) => {
   const body = JSON.stringify(newUserData);
@@ -33,19 +51,5 @@ export const registerNewUser = (newUserData) => async (dispatch) => {
     dispatch({
       type: REGISTER_FAIL,
     });
-  }
-};
-
-// Load user
-export const loadUser = () => async (dispatch) => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
-
-  try {
-    const res = await axios.get("/api/auth");
-    dispatch({ type: USER_LOADED, payload: res.data });
-  } catch (error) {
-    dispatch({ type: AUTH_ERROR });
   }
 };
