@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { setAlert } from "../../actions/alerts";
@@ -33,6 +33,11 @@ const Register = (props) => {
       props.registerNewUser(newUserData);
     }
   };
+
+  // Redirect if logged in
+  if (props.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <React.Fragment>
       <h1 className="large text-primary">Sign Up</h1>
@@ -100,7 +105,12 @@ const Register = (props) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   registerNewUser: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -109,4 +119,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
