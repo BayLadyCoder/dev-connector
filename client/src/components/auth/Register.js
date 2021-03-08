@@ -20,9 +20,9 @@ const Register = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (password !== password2) {
       props.setAlert("Password do not matched", "danger");
-      console.log("Password do not matched");
     } else {
       console.log("Success!!");
 
@@ -46,7 +46,7 @@ const Register = (props) => {
     }
   };
   return (
-    <section className="container">
+    <React.Fragment>
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Create Your Account
@@ -95,12 +95,17 @@ const Register = (props) => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <input type="submit" className="btn btn-primary" value="Register" />
+        <input
+          type="submit"
+          className="btn btn-primary"
+          value="Register"
+          onClick={(e) => handleSubmit(e)}
+        />
       </form>
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
-    </section>
+    </React.Fragment>
   );
 };
 
@@ -108,11 +113,8 @@ Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => {
-  return null;
-};
 const mapDispatchToProps = (dispatch) => {
-  return { setAlert };
+  return { setAlert: (msg, alertType) => setAlert(msg, alertType)(dispatch) };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(null, mapDispatchToProps)(Register);

@@ -5,6 +5,7 @@ import NavBar from "./components/layout/NavBar";
 import Landing from "./components/layout/Landing";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Alert from "./components/layout/Alert";
 
 //Redux
 import { Provider } from "react-redux";
@@ -17,10 +18,13 @@ function App() {
         <React.Fragment>
           <NavBar />
           <Route exact path="/" component={Landing} />
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-          </Switch>
+          <section className="container">
+            <Alert />
+            <Switch>
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+            </Switch>
+          </section>
         </React.Fragment>
       </Router>
     </Provider>

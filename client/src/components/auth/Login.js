@@ -18,7 +18,7 @@ const Login = () => {
     console.log("Success!!");
   };
   return (
-    <section className="container">
+    <React.Fragment>
       <div className="alert alert-danger">Invalid credentials</div>
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead">
@@ -49,7 +49,7 @@ const Login = () => {
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
-    </section>
+    </React.Fragment>
   );
 };
 

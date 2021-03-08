@@ -23,8 +23,4 @@ const mapStateToProps = (state) => {
   return { alerts: state.alerts };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return null;
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Alert);
+export default connect(mapStateToProps, null)(Alert);
