@@ -3,13 +3,8 @@ import { setAlert } from "./alerts";
 import { REGISTER_SUCCESS, REGISTER_FAIL } from "./types";
 
 // Register user
-export const register = ({ name, email, password }) => async (dispatch) => {
-  const newUser = {
-    name,
-    email,
-    password,
-  };
-  const body = JSON.stringify(newUser);
+export const registerNewUser = (newUserData) => async (dispatch) => {
+  const body = JSON.stringify(newUserData);
 
   try {
     const config = {

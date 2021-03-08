@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { setAlert } from "../../actions/alerts";
 import PropTypes from "prop-types";
+import { setAlert } from "../../actions/alerts";
+import { registerNewUser } from "../../actions/auth";
 
 const Register = (props) => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,12 @@ const Register = (props) => {
     if (password !== password2) {
       props.setAlert("Password do not matched", "danger");
     } else {
-      console.log("Success!!");
+      const newUserData = {
+        name,
+        email,
+        password,
+      };
+      props.registerNewUser(newUserData);
     }
   };
   return (
@@ -93,10 +99,14 @@ const Register = (props) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  registerNewUser: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return { setAlert: (msg, alertType) => setAlert(msg, alertType)(dispatch) };
+  return {
+    setAlert: (msg, alertType) => setAlert(msg, alertType)(dispatch),
+    registerNewUser: (newUserData) => registerNewUser(newUserData)(dispatch),
+  };
 };
 
 export default connect(null, mapDispatchToProps)(Register);
