@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createProfile } from "../../actions/profile";
+import { createProfile, getCurrentProfile } from "../../actions/profile";
 
-const CreateProfileForm = (props) => {
+const EditProfileForm = (props) => {
+  const { profile, loading } = props.profile;
   const [formData, setFormData] = useState({
     company: "",
     website: "",
@@ -21,6 +22,37 @@ const CreateProfileForm = (props) => {
   });
 
   const [displaySocialInputs, setDisplaySocialInputs] = useState(false);
+
+  const { getCurrentProfile } = props;
+
+  useEffect(() => {
+    getCurrentProfile();
+    // setFormDataFromAPI();
+    const {
+      company,
+      website,
+      location,
+      status,
+      skills,
+      githubusername,
+      bio,
+      social,
+    } = profile;
+    setFormData({
+      company: loading || !company ? "" : company,
+      website: loading || !website ? "" : website,
+      location: loading || !location ? "" : location,
+      status: loading || !status ? "" : status,
+      skills: loading || !skills ? "" : skills.join(", "),
+      githubusername: loading || !githubusername ? "" : githubusername,
+      bio: loading || !bio ? "" : bio,
+      twitter: loading || !social ? "" : social.twitter,
+      facebook: loading || !social ? "" : social.facebook,
+      linkedin: loading || !social ? "" : social.linkedin,
+      youtube: loading || !social ? "" : social.youtube,
+      instagram: loading || !social ? "" : social.instagram,
+    });
+  }, []);
 
   const {
     company,
@@ -43,12 +75,12 @@ const CreateProfileForm = (props) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    props.createProfile(formData, props.history);
+    props.createProfile(formData, props.history, true);
   };
 
   return (
     <React.Fragment>
-      <h1 className="large text-primary">Create Your Profile</h1>
+      <h1 className="large text-primary">Edit Your Profile</h1>
       <p className="lead">
         <i className="fas fa-user"></i> Let's get some information to make your
         profile stand out
@@ -220,9 +252,17 @@ const CreateProfileForm = (props) => {
   );
 };
 
-CreateProfileForm.propTypes = {
+EditProfileForm.propTypes = {
   createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
+
 // Passing withRouter to be able to pass history
-export default connect(null, { createProfile })(withRouter(CreateProfileForm));
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(EditProfileForm)
+);

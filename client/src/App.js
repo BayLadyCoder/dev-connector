@@ -9,6 +9,7 @@ import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
 import PrivateRoute from "./components/routing/PrivateRoute";
 import CreateProfileForm from "./components/profile-forms/CreateProfileForm";
+import EditProfileForm from "./components/profile-forms/EditProfileForm";
 
 //Redux
 import { Provider } from "react-redux";
@@ -35,6 +36,11 @@ function App() {
                 exact
                 path="/create-profile"
                 component={CreateProfileForm}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-profile"
+                component={EditProfileForm}
               />
             </Switch>
           </section>
