@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
 import DashboardActions from "./DashboardActions";
+import Experience from "./Experience";
 
 const Dashboard = (props) => {
   const { getCurrentProfile } = props;
@@ -27,7 +28,10 @@ const Dashboard = (props) => {
         <i className="fa fas-user" /> Welcome {user && user.name}
       </p>
       {profile !== null ? (
-        <DashboardActions />
+        <React.Fragment>
+          <DashboardActions />
+          <Experience experience={profile.experience} />
+        </React.Fragment>
       ) : (
         <React.Fragment>
           <p>You have not yet setup a profile add some info</p>
