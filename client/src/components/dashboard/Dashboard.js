@@ -6,6 +6,7 @@ import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
 import DashboardActions from "./DashboardActions";
 import Experience from "./Experience";
+import Education from "./Education";
 
 const Dashboard = (props) => {
   const { getCurrentProfile } = props;
@@ -31,6 +32,7 @@ const Dashboard = (props) => {
         <React.Fragment>
           <DashboardActions />
           <Experience experience={profile.experience} />
+          <Education education={profile.education} />
         </React.Fragment>
       ) : (
         <React.Fragment>
