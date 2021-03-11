@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addNewExperience } from "../../actions/profile";
+import { addNewEducation } from "../../actions/profile";
 
-function AddNewExperienceForm(props) {
+function AddNewEducationForm(props) {
   const [formData, setFormData] = useState({
-    company: "",
-    title: "",
-    location: "",
+    school: "",
+    degree: "",
+    fieldofstudy: "",
     to: "",
     from: "",
     current: false,
@@ -17,89 +17,94 @@ function AddNewExperienceForm(props) {
 
   const [toDateDisabled, setToDateDisabled] = useState(false);
 
-  const { company, title, location, to, from, current, description } = formData;
+  const {
+    school,
+    degree,
+    fieldofstudy,
+    to,
+    from,
+    current,
+    description,
+  } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const handleCurrentCheckbox = () => {
-    setFormData({ ...formData, current: !current });
-    setToDateDisabled(!toDateDisabled);
-  };
-
   const onSubmit = (e) => {
     e.preventDefault();
-    props.addNewExperience(formData, props.history);
+    props.addNewEducation(formData, props.history);
   };
 
   return (
     <React.Fragment>
-      <h1 className="large text-primary">Add An Experience</h1>
+      <h1 className="large text-primary">Add Your Education</h1>
       <p className="lead">
-        <i className="fas fa-code-branch"></i> Add any developer/programming
-        positions that you have had in the past
+        <i className="fas fa-graduation-cap"></i> Add any school, bootcamp, etc
+        that you have attended
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
           <input
-            value={title}
-            onChange={(e) => onChange(e)}
             type="text"
-            placeholder="* Job Title"
-            name="title"
+            placeholder="* School or Bootcamp"
+            name="school"
+            value={school}
+            onChange={(e) => onChange(e)}
             required
           />
         </div>
         <div className="form-group">
           <input
-            value={company}
-            onChange={(e) => onChange(e)}
             type="text"
-            placeholder="* Company"
-            name="company"
+            placeholder="* Degree or Certificate"
+            name="degree"
+            value={degree}
+            onChange={(e) => onChange(e)}
             required
           />
         </div>
         <div className="form-group">
           <input
-            value={location}
-            onChange={(e) => onChange(e)}
             type="text"
-            placeholder="Location"
-            name="location"
+            placeholder="Field Of Study"
+            name="fieldofstudy"
+            value={fieldofstudy}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <div className="form-group">
           <h4>From Date</h4>
           <input
-            value={from}
-            onChange={(e) => onChange(e)}
             type="date"
             name="from"
+            value={from}
+            onChange={(e) => onChange(e)}
           />
         </div>
         <div className="form-group">
           <p>
             <input
-              value={current}
               checked={current}
-              onChange={() => handleCurrentCheckbox()}
+              value={current}
+              onChange={(e) => {
+                setFormData({ ...formData, current: !current });
+                setToDateDisabled(!toDateDisabled);
+              }}
               type="checkbox"
               name="current"
             />{" "}
-            Current Job
+            Current School or Bootcamp
           </p>
         </div>
         <div className="form-group">
           <h4>To Date</h4>
           <input
+            type="date"
+            name="to"
             value={to}
             onChange={(e) => onChange(e)}
             disabled={toDateDisabled}
-            type="date"
-            name="to"
           />
         </div>
         <div className="form-group">
@@ -109,7 +114,7 @@ function AddNewExperienceForm(props) {
             name="description"
             cols="30"
             rows="5"
-            placeholder="Job Description"
+            placeholder="Program Description"
           ></textarea>
         </div>
         <input type="submit" className="btn btn-primary my-1" />
@@ -121,8 +126,8 @@ function AddNewExperienceForm(props) {
   );
 }
 
-AddNewExperienceForm.propTypes = {
-  addNewExperience: PropTypes.func.isRequired,
+AddNewEducationForm.propTypes = {
+  addNewEducation: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addNewExperience })(AddNewExperienceForm);
+export default connect(null, { addNewEducation })(AddNewEducationForm);
