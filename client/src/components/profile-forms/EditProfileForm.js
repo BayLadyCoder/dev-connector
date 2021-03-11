@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -23,36 +23,25 @@ const EditProfileForm = (props) => {
 
   const [displaySocialInputs, setDisplaySocialInputs] = useState(false);
 
-  const { getCurrentProfile } = props;
-
   useEffect(() => {
     getCurrentProfile();
-    // setFormDataFromAPI();
-    const {
-      company,
-      website,
-      location,
-      status,
-      skills,
-      githubusername,
-      bio,
-      social,
-    } = profile;
+
     setFormData({
-      company: loading || !company ? "" : company,
-      website: loading || !website ? "" : website,
-      location: loading || !location ? "" : location,
-      status: loading || !status ? "" : status,
-      skills: loading || !skills ? "" : skills.join(", "),
-      githubusername: loading || !githubusername ? "" : githubusername,
-      bio: loading || !bio ? "" : bio,
-      twitter: loading || !social ? "" : social.twitter,
-      facebook: loading || !social ? "" : social.facebook,
-      linkedin: loading || !social ? "" : social.linkedin,
-      youtube: loading || !social ? "" : social.youtube,
-      instagram: loading || !social ? "" : social.instagram,
+      company: loading || !profile.company ? "" : profile.company,
+      website: loading || !profile.website ? "" : profile.website,
+      location: loading || !profile.location ? "" : profile.location,
+      status: loading || !profile.status ? "" : profile.status,
+      skills: loading || !profile.skills ? "" : profile.skills,
+      githubusername:
+        loading || !profile.githubusername ? "" : profile.githubusername,
+      bio: loading || !profile.bio ? "" : profile.bio,
+      twitter: loading || !profile.social ? "" : profile.social.twitter,
+      facebook: loading || !profile.social ? "" : profile.social.facebook,
+      linkedin: loading || !profile.social ? "" : profile.social.linkedin,
+      youtube: loading || !profile.social ? "" : profile.social.youtube,
+      instagram: loading || !profile.social ? "" : profile.social.instagram,
     });
-  }, []);
+  }, [loading, profile]);
 
   const {
     company,
