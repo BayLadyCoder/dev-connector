@@ -130,4 +130,6 @@ AddNewEducationForm.propTypes = {
   addNewEducation: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addNewEducation })(AddNewEducationForm);
+export default connect(null, { addNewEducation })(
+  withRouter(AddNewEducationForm)
+);

@@ -10,7 +10,7 @@ const Profiles = (props) => {
 
   useEffect(() => {
     props.getProfiles();
-  }, []);
+  }, [props]);
 
   return (
     <React.Fragment>

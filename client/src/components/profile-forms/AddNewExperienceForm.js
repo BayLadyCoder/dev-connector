@@ -125,4 +125,6 @@ AddNewExperienceForm.propTypes = {
   addNewExperience: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addNewExperience })(AddNewExperienceForm);
+export default connect(null, { addNewExperience })(
+  withRouter(AddNewExperienceForm)
+);
