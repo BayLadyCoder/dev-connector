@@ -33,7 +33,7 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: state.posts.map((post) =>
-          post.id === payload.postId ? { ...post, likes: payload.likes } : post
+          post._id === payload.postId ? { ...post, likes: payload.likes } : post
         ),
         loading: false,
       };
