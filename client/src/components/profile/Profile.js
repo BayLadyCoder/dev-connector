@@ -8,6 +8,7 @@ import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
 import ProfileEducation from "./ProfileEducation";
+import ProfileGithub from "./ProfileGithub";
 
 const Profile = (props) => {
   const { getProfileById, match } = props;
@@ -61,6 +62,9 @@ const Profile = (props) => {
                 <h4>No education credential</h4>
               )}
             </div>
+            {props.profile.githubusername && (
+              <ProfileGithub username={props.profile.githubusername} />
+            )}
           </div>
         </React.Fragment>
       )}
