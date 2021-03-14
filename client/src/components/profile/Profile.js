@@ -6,6 +6,7 @@ import Spinner from "../layout/Spinner";
 import { getProfileById } from "../../actions/profile";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
+import ProfileExperience from "./ProfileExperience";
 
 const Profile = (props) => {
   const { getProfileById, match } = props;
@@ -34,6 +35,18 @@ const Profile = (props) => {
           <div class="profile-grid my-1">
             <ProfileTop profile={props.profile} />
             <ProfileAbout profile={props.profile} />
+            <div className="profile-exp bg-white p-2">
+              <h2 class="text-primary">Experience</h2>
+              {props.profile.experience.length > 0 ? (
+                <React.Fragment>
+                  {props.profile.experience.map((exp) => (
+                    <ProfileExperience key={exp._id} experience={exp} />
+                  ))}
+                </React.Fragment>
+              ) : (
+                <h4>No experience credential</h4>
+              )}
+            </div>
           </div>
         </React.Fragment>
       )}
