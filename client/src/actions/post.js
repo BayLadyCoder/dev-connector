@@ -5,6 +5,7 @@ import {
   POST_ERROR,
   UPDATE_LIKES,
   UPDATE_LIKES_ERROR,
+  DELETE_POST,
 } from "./types";
 
 // Get all posts
@@ -60,6 +61,28 @@ export const removeLike = (postId) => async (dispatch) => {
     console.log(error.message);
     dispatch({
       type: UPDATE_LIKES_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+// Delete post
+export const deletePost = (postId) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/posts/${postId}/`);
+    dispatch({
+      type: DELETE_POST,
+      payload: postId,
+    });
+
+    dispatch(setAlert("Post Removed", "success"));
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: POST_ERROR,
       payload: {
         msg: error.response.statusText,
         status: error.response.status,
