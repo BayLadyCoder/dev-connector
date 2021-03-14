@@ -7,6 +7,7 @@ import { getProfileById } from "../../actions/profile";
 import ProfileTop from "./ProfileTop";
 import ProfileAbout from "./ProfileAbout";
 import ProfileExperience from "./ProfileExperience";
+import ProfileEducation from "./ProfileEducation";
 
 const Profile = (props) => {
   const { getProfileById, match } = props;
@@ -32,11 +33,11 @@ const Profile = (props) => {
                 Edit Profile
               </Link>
             )}
-          <div class="profile-grid my-1">
+          <div className="profile-grid my-1">
             <ProfileTop profile={props.profile} />
             <ProfileAbout profile={props.profile} />
             <div className="profile-exp bg-white p-2">
-              <h2 class="text-primary">Experience</h2>
+              <h2 className="text-primary">Experience</h2>
               {props.profile.experience.length > 0 ? (
                 <React.Fragment>
                   {props.profile.experience.map((exp) => (
@@ -47,6 +48,19 @@ const Profile = (props) => {
                 <h4>No experience credential</h4>
               )}
             </div>
+
+            <div className="profile-edu bg-white p-2">
+              <h2 className="text-primary">Education</h2>
+              {props.profile.education.length > 0 ? (
+                <React.Fragment>
+                  {props.profile.education.map((edu) => (
+                    <ProfileEducation key={edu._id} education={edu} />
+                  ))}
+                </React.Fragment>
+              ) : (
+                <h4>No education credential</h4>
+              )}
+            </div>
           </div>
         </React.Fragment>
       )}
@@ -55,7 +69,7 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.object,
   auth: PropTypes.object.isRequired,
   getProfileById: PropTypes.func.isRequired,
 };
