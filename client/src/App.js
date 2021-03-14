@@ -13,6 +13,7 @@ import EditProfileForm from "./components/profile-forms/EditProfileForm";
 import AddNewExperienceForm from "./components/profile-forms/AddNewExperienceForm";
 import AddNewEducationForm from "./components/profile-forms/AddNewEducationForm";
 import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
 
 //Redux
 import { Provider } from "react-redux";
@@ -35,6 +36,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:id" component={Profile} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute
                 exact

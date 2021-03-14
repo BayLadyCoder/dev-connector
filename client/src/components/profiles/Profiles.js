@@ -7,10 +7,11 @@ import ProfileItem from "./ProfileItem";
 
 const Profiles = (props) => {
   const { profiles, loading } = props.profile;
+  const { getProfiles } = props;
 
   useEffect(() => {
-    props.getProfiles();
-  }, [props]);
+    getProfiles();
+  }, [getProfiles]);
 
   return (
     <React.Fragment>
