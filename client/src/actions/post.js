@@ -6,6 +6,7 @@ import {
   UPDATE_LIKES,
   UPDATE_LIKES_ERROR,
   DELETE_POST,
+  ADD_POST,
 } from "./types";
 
 // Get all posts
@@ -79,6 +80,33 @@ export const deletePost = (postId) => async (dispatch) => {
     });
 
     dispatch(setAlert("Post Removed", "success"));
+  } catch (error) {
+    console.log(error.message);
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+// Add post
+export const addPost = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await axios.post(`/api/posts`, formData, config);
+    dispatch({
+      type: ADD_POST,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Post Created", "success"));
   } catch (error) {
     console.log(error.message);
     dispatch({
