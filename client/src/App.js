@@ -16,6 +16,7 @@ import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import Post from "./components/post/Post";
+import NotFound from "./components/layout/NotFound";
 
 //Redux
 import { Provider } from "react-redux";
@@ -31,39 +32,42 @@ function App() {
       <Router>
         <React.Fragment>
           <NavBar />
-          <Route exact path="/" component={Landing} />
-          <section className="container">
-            <Alert />
-            <Switch>
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile/:id" component={Profile} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute
-                exact
-                path="/create-profile"
-                component={CreateProfileForm}
-              />
-              <PrivateRoute
-                exact
-                path="/edit-profile"
-                component={EditProfileForm}
-              />
-              <PrivateRoute
-                exact
-                path="/add-experience"
-                component={AddNewExperienceForm}
-              />
-              <PrivateRoute
-                exact
-                path="/add-education"
-                component={AddNewEducationForm}
-              />
-              <PrivateRoute exact path="/posts" component={Posts} />
-              <PrivateRoute exact path="/posts/:id" component={Post} />
-            </Switch>
-          </section>
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <section className="container">
+              <Alert />
+              <Switch>
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/profiles" component={Profiles} />
+                <Route exact path="/profile/:id" component={Profile} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
+                  component={CreateProfileForm}
+                />
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={EditProfileForm}
+                />
+                <PrivateRoute
+                  exact
+                  path="/add-experience"
+                  component={AddNewExperienceForm}
+                />
+                <PrivateRoute
+                  exact
+                  path="/add-education"
+                  component={AddNewEducationForm}
+                />
+                <PrivateRoute exact path="/posts" component={Posts} />
+                <PrivateRoute exact path="/posts/:id" component={Post} />
+                <Route component={NotFound} />
+              </Switch>
+            </section>
+          </Switch>
         </React.Fragment>
       </Router>
     </Provider>
