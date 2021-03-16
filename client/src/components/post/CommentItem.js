@@ -8,9 +8,12 @@ import Moment from "react-moment";
 const CommentItem = ({
   postId,
   comment: { _id, text, name, avatar, user, date },
-  auth: { isAuthenticated },
+  auth,
   deleteComment,
 }) => {
+  const handleDeleteComment = () => {
+    deleteComment(postId, _id);
+  };
   return (
     <div className="post bg-white p-1 my-1">
       <div>
@@ -24,6 +27,15 @@ const CommentItem = ({
         <p className="post-date">
           Posted on <Moment format="YYYY/MM/DD">{date}</Moment>
         </p>
+        {!auth.loading && user === auth.user._id && (
+          <button
+            onClick={(e) => handleDeleteComment()}
+            type="button"
+            className="btn btn-danger"
+          >
+            <i className="fas fa-times" />
+          </button>
+        )}
       </div>
     </div>
   );
