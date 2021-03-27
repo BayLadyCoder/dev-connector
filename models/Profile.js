@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
+    ref: "dev-connector_user",
   },
   company: {
     type: String,
@@ -110,4 +110,4 @@ const ProfileSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("devConnector_profile", ProfileSchema);
+module.exports = mongoose.model("dev-connector_profile", ProfileSchema);

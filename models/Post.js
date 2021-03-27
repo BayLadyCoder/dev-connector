@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "dev-connector_user",
   },
   text: {
     type: String,
@@ -52,4 +52,4 @@ const PostSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model("devConnector_post", PostSchema);
+module.exports = mongoose.model("dev-connector_post", PostSchema);

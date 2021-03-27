@@ -23,4 +23,4 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("devConnector_user", UserSchema);
+module.exports = mongoose.model("dev-connector_user", UserSchema);
